@@ -8,5 +8,20 @@
     <artifactId>blabber-generator</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.sourceforge.jaadec</groupId>
+            <artifactId>jaad</artifactId>
+            <version>0.8.6</version>
+        </dependency>
+    </dependencies>
+
 </project>
