@@ -35,7 +35,10 @@ class RobVoiceTest {
 
   @Test
   void getPhonemeOf() {
-    assertEquals(robAStream, robVoice.getPhonemeOf(Letter.A).renderSound());
-    assertEquals(robBStream, robVoice.getPhonemeOf(Letter.B).renderSound());
+    assertEquals(robAStream.getFormat(), robVoice.getPhonemeOf(Letter.A).renderSound().getFormat());
+    assertEquals(robAStream.getFrameLength(), robVoice.getPhonemeOf(Letter.A).renderSound().getFrameLength());
+
+    assertEquals(robBStream.getFormat(), robVoice.getPhonemeOf(Letter.B).renderSound().getFormat());
+    assertEquals(robBStream.getFrameLength(), robVoice.getPhonemeOf(Letter.B).renderSound().getFrameLength());
   }
 }
