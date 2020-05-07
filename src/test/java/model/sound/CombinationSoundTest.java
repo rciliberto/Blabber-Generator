@@ -16,6 +16,8 @@ import model.Letter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CombinationSoundTest {
+  String robAFile;
+  String robBFile;
 
   AudioInputStream robAStream;
   AudioInputStream robBStream;
@@ -32,6 +34,9 @@ class CombinationSoundTest {
 
   @BeforeEach
   void setUp() throws IOException, UnsupportedAudioFileException {
+    robAFile = "src/main/resources/RobVoice/A.wav";
+    robBFile = "src/main/resources/RobVoice/A.wav";
+
     robAStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/A.wav"));
     robBStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/B.wav"));
 
@@ -42,8 +47,8 @@ class CombinationSoundTest {
     combinedABBA = new AudioInputStream(new SequenceInputStream(combinedAB, combinedBA), combinedAB.getFormat(),
             combinedAB.getFrameLength() + combinedBA.getFrameLength());
 
-    robA = new Phoneme(Letter.A, robAStream);
-    robB = new Phoneme(Letter.A, robBStream);
+    robA = new Phoneme(Letter.A, robAFile);
+    robB = new Phoneme(Letter.A, robBFile);
 
     robABCombined = new CombinationSound(combinedAB);
     robBACombined = new CombinationSound(combinedBA);
@@ -53,15 +58,12 @@ class CombinationSoundTest {
   @Test
   void appendSound() {
     assertEquals(combinedABBA.getFrameLength(), robABBACombined.renderSound().getFrameLength());
-    assertEquals(combinedABBA.getFormat(), robABBACombined.renderSound().getFormat());
   }
 
   @Test
   void renderSound() {
     assertEquals(combinedAB.getFrameLength(), robABCombined.renderSound().getFrameLength());
-    assertEquals(combinedAB.getFormat(), robABCombined.renderSound().getFormat());
 
     assertEquals(combinedBA.getFrameLength(), robBACombined.renderSound().getFrameLength());
-    assertEquals(combinedBA.getFormat(), robBACombined.renderSound().getFormat());
   }
 }

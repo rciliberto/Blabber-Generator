@@ -10,15 +10,15 @@ import model.Letter;
 
 public class RobVoice extends PersonVoice {
 
-  private static HashMap<Letter, AudioInputStream> constructPhonemes() {
-    HashMap<Letter, AudioInputStream> phonemes = new HashMap<>();
+  private static HashMap<Letter, String> constructPhonemes() {
+    HashMap<Letter, String> phonemes = new HashMap<>();
 
     for (Letter letter : Letter.values()) {
-      File soundFile;
+      String soundFile;
 
       try {
-        soundFile = new File(String.format("src/main/resources/RobVoice/%s.wav", letter.toString()));
-        phonemes.put(letter, AudioSystem.getAudioInputStream(soundFile));
+        soundFile = String.format("src/main/resources/RobVoice/%s.wav", letter.toString());
+        phonemes.put(letter, soundFile);
       } catch (Exception e){
         e.printStackTrace();
         System.exit(1);
@@ -32,7 +32,7 @@ public class RobVoice extends PersonVoice {
     super(constructPhonemes());
   }
 
-  RobVoice(HashMap<Letter, AudioInputStream> phonemes) {
+  RobVoice(HashMap<Letter, String> phonemes) {
     super(phonemes);
   }
 }

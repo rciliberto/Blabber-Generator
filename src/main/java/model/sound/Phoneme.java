@@ -1,5 +1,6 @@
 package model.sound;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -10,11 +11,11 @@ import model.Letter;
 
 public class Phoneme extends AbstractSound {
   private final Letter letter;
-  private final AudioInputStream phonemeSound;
+  private final String phonemeFile;
 
-  public Phoneme(Letter letter, AudioInputStream phonemeSound) {
+  public Phoneme(Letter letter, String phonemeFile) {
     this.letter = letter;
-    this.phonemeSound = phonemeSound;
+    this.phonemeFile = phonemeFile;
   }
 
   @Override
@@ -24,8 +25,11 @@ public class Phoneme extends AbstractSound {
 
   @Override
   public AudioInputStream renderSound() {
-    return new AudioInputStream(this.phonemeSound, this.phonemeSound.getFormat(),
-            this.phonemeSound.getFrameLength());
+    try {
+      return AudioSystem.getAudioInputStream(new File(phonemeFile));
+    } catch (UnsupportedAudioFileException | IOException e) {
+      throw new IllegalStateException("Failed to render sound.");
+    }
   }
 
   @Override

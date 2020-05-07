@@ -15,6 +15,9 @@ import model.Letter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhonemeTest {
+  String robAFile;
+  String robBFile;
+
   AudioInputStream robAStream;
   AudioInputStream robBStream;
 
@@ -23,16 +26,18 @@ class PhonemeTest {
 
   @BeforeEach
   void setUp() throws IOException, UnsupportedAudioFileException {
-    robAStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/A.wav"));
-    robBStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/B.wav"));
+    robAFile = "src/main/resources/RobVoice/A.wav";
+    robBFile = "src/main/resources/RobVoice/B.wav";
 
-    robA = new Phoneme(Letter.A, robAStream);
-    robB = new Phoneme(Letter.A, robBStream);
+    robAStream = AudioSystem.getAudioInputStream(new File(robAFile));
+    robBStream = AudioSystem.getAudioInputStream(new File(robBFile));
+
+    robA = new Phoneme(Letter.A, robAFile);
+    robB = new Phoneme(Letter.A, robBFile);
   }
 
   @Test
   void appendSound() {
-    assertEquals(robA.renderSound().getFormat(), robA.appendSound(robB).renderSound().getFormat());
     assertEquals(robA.renderSound().getFrameLength() + robB.renderSound().getFrameLength(),
             robA.appendSound(robB).renderSound().getFrameLength());
     assertEquals(robA.renderSound().getFrameLength() + robB.renderSound().getFrameLength(),
@@ -40,11 +45,9 @@ class PhonemeTest {
   }
 
   @Test
-  void renderSound() throws IOException {
+  void renderSound() {
     assertEquals(robAStream.getFrameLength(), robA.renderSound().getFrameLength());
-    assertEquals(robAStream.getFormat(), robA.renderSound().getFormat());
 
     assertEquals(robBStream.getFrameLength(), robB.renderSound().getFrameLength());
-    assertEquals(robBStream.getFormat(), robB.renderSound().getFormat());
   }
 }

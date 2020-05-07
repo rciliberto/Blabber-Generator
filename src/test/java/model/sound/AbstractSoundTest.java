@@ -16,6 +16,9 @@ import model.Letter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AbstractSoundTest {
+  String robAFile;
+  String robBFile;
+
   AudioInputStream robAStream;
   AudioInputStream robBStream;
 
@@ -26,11 +29,14 @@ class AbstractSoundTest {
 
   @BeforeEach
   void setUp() throws IOException, UnsupportedAudioFileException {
-    robAStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/A.wav"));
-    robBStream = AudioSystem.getAudioInputStream(new File("src/main/resources/RobVoice/B.wav"));
+    robAFile = "src/main/resources/RobVoice/A.wav";
+    robBFile = "src/main/resources/RobVoice/B.wav";
 
-    robA = new Phoneme(Letter.A, robAStream);
-    robB = new Phoneme(Letter.A, robBStream);
+    robAStream = AudioSystem.getAudioInputStream(new File(robAFile));
+    robBStream = AudioSystem.getAudioInputStream(new File(robBFile));
+
+    robA = new Phoneme(Letter.A, robAFile);
+    robB = new Phoneme(Letter.A, robBFile);
 
     combined = new AudioInputStream(new SequenceInputStream(robAStream, robBStream), robAStream.getFormat(),
             robAStream.getFrameLength() + robBStream.getFrameLength());
@@ -39,6 +45,5 @@ class AbstractSoundTest {
   @Test
   void combineSounds() {
     assertEquals(combined.getFrameLength(), AbstractSound.combineSounds(robA, robB).getFrameLength());
-    assertEquals(combined.getFormat(), AbstractSound.combineSounds(robA, robB).getFormat());
   }
 }
