@@ -1,11 +1,11 @@
-package model;
+package com.rciliberto.blabber.model;
 
 import javax.sound.sampled.AudioInputStream;
 
-import model.sound.Sound;
+import com.rciliberto.blabber.model.sound.Sound;
 
 /**
- * A model that turns text into a rendered {@link AudioInputStream} that speaks the text.
+ * A com.rciliberto.blabber.model that turns text into a rendered {@link AudioInputStream} that speaks the text.
  */
 public interface GeneratorModel {
   /**

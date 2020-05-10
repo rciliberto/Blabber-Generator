@@ -1,4 +1,4 @@
-package model.sound;
+package com.rciliberto.blabber.model.sound;
 
 import javax.sound.sampled.AudioInputStream;
 

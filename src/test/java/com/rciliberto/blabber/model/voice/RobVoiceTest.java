@@ -1,4 +1,4 @@
-package model.voice;
+package com.rciliberto.blabber.model.voice;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import model.letter.Letter;
+import com.rciliberto.blabber.model.letter.Letter;
 
 import static org.junit.jupiter.api.Assertions.*;
 

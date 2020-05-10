@@ -1,4 +1,4 @@
-package model.voice;
+package com.rciliberto.blabber.model.voice;
 
 /**
  * {@link RobVoice} represents the {@link AbstractVoice} "Rob"

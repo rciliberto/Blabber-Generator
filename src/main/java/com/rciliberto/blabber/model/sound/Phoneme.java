@@ -1,4 +1,4 @@
-package model.sound;
+package com.rciliberto.blabber.model.sound;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import model.letter.Letter;
+import com.rciliberto.blabber.model.letter.Letter;
 
 /**
  * A {@link Phoneme} represents a {@link Sound} from a letter of the alphabet.

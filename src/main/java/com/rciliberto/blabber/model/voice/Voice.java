@@ -1,7 +1,7 @@
-package model.voice;
+package com.rciliberto.blabber.model.voice;
 
-import model.letter.Letter;
-import model.sound.Sound;
+import com.rciliberto.blabber.model.letter.Letter;
+import com.rciliberto.blabber.model.sound.Sound;
 
 /**
  * A {@link Voice} represents a voice that can speak letters of the alphabet.

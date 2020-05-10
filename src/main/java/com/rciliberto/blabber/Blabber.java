@@ -1,13 +1,15 @@
+package com.rciliberto.blabber;
+
 import java.io.File;
 import java.io.IOException;
 
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioSystem;
 
-import model.GeneratorModel;
-import model.VoiceGeneratorModel;
-import model.sound.Sound;
-import model.voice.RobVoice;
+import com.rciliberto.blabber.model.GeneratorModel;
+import com.rciliberto.blabber.model.VoiceGeneratorModel;
+import com.rciliberto.blabber.model.sound.Sound;
+import com.rciliberto.blabber.model.voice.RobVoice;
 
 public class Blabber {
     public static void main(String[] args) {

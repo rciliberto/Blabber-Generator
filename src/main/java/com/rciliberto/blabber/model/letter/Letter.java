@@ -1,4 +1,4 @@
-package model.letter;
+package com.rciliberto.blabber.model.letter;
 
 /**
  * A {@link Letter} represents one of the 26 letters of the alphabet.

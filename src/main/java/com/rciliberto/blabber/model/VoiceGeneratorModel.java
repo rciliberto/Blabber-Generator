@@ -1,12 +1,10 @@
-package model;
+package com.rciliberto.blabber.model;
 
 import java.util.Objects;
 
-import javax.sound.sampled.AudioInputStream;
-
-import model.letter.Letter;
-import model.sound.Sound;
-import model.voice.Voice;
+import com.rciliberto.blabber.model.letter.Letter;
+import com.rciliberto.blabber.model.sound.Sound;
+import com.rciliberto.blabber.model.voice.Voice;
 
 /**
  * A {@link GeneratorModel} that generates sounds based on a specific {@link Voice}.

@@ -42,7 +42,7 @@
                         <archive>
                             <manifest>
                                 <!-- Jar file entry point -->
-                                <mainClass>Blabber</mainClass>
+                                <mainClass>com.rciliberto.blabber.Blabber</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

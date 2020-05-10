@@ -1,11 +1,11 @@
-package model.voice;
+package com.rciliberto.blabber.model.voice;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import model.letter.Letter;
-import model.sound.Phoneme;
-import model.sound.Sound;
+import com.rciliberto.blabber.model.letter.Letter;
+import com.rciliberto.blabber.model.sound.Phoneme;
+import com.rciliberto.blabber.model.sound.Sound;
 
 /**
  * An abstract representation of a {@link Voice} based on the voice of a person.
