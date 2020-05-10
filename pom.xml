@@ -11,7 +11,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
+            <version>5.7.0-M1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -31,6 +31,20 @@
                     <version>3.8.1</version>
                     <configuration>
                         <release>11</release>
+                    </configuration>
+                </plugin>
+
+                <!-- Make this jar executable -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <!-- Jar file entry point -->
+                                <mainClass>Blabber</mainClass>
+                            </manifest>
+                        </archive>
                     </configuration>
                 </plugin>
             </plugins>
