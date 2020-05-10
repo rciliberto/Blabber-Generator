@@ -10,7 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import model.Letter;
+import model.letter.Letter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

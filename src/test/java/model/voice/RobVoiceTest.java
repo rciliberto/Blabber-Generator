@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import model.Letter;
+import model.letter.Letter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,16 +26,12 @@ class RobVoiceTest {
   @BeforeEach
   void setUp() throws IOException, UnsupportedAudioFileException {
     robAFile = "src/main/resources/RobVoice/A.wav";
-    robBFile = "src/main/resources/RobVoice/F.wav";
+    robBFile = "src/main/resources/RobVoice/B.wav";
 
     robAStream = AudioSystem.getAudioInputStream(new File(robAFile));
     robBStream = AudioSystem.getAudioInputStream(new File(robBFile));
 
-    HashMap<Letter, String> phonemes = new HashMap<>();
-    phonemes.put(Letter.A, robAFile);
-    phonemes.put(Letter.B, robBFile);
-
-    robVoice = new RobVoice(phonemes);
+    robVoice = new RobVoice();
   }
 
   @Test

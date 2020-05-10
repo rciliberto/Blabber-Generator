@@ -4,26 +4,36 @@ import java.util.Objects;
 
 import javax.sound.sampled.AudioInputStream;
 
+import model.letter.Letter;
 import model.sound.Sound;
 import model.voice.Voice;
 
-public class VoiceGenerator implements Generator {
+/**
+ * A {@link GeneratorModel} that generates sounds based on a specific {@link Voice}.
+ */
+public class VoiceGeneratorModel implements GeneratorModel {
   private final Voice voice;
 
-  public VoiceGenerator(Voice voice) {
+  /**
+   * Construct this {@link VoiceGeneratorModel} based on a specific {@link Voice}.
+   * @param voice The {@link Voice} used to construct generated sounds.
+   */
+  public VoiceGeneratorModel(Voice voice) {
     this.voice = voice;
   }
 
   @Override
-  public AudioInputStream generate(String generationText) {
+  public Sound generate(String generationText) {
     if (Objects.isNull(generationText)) {
       throw new IllegalArgumentException("Generation text cannot be Null");
     } else if (generationText.equals("")){
       throw new IllegalArgumentException("Generation text cannot be empty");
     }
 
-    generationText = generationText.replaceAll("[^A-Za-z0-9]", "");
+    // Remove all non-alphabet characters
+    generationText = generationText.replaceAll("[^A-Za-z]", "");
 
+    // Get each phoneme for each letter in the generation text and combine them.
     Letter firstLetter = Letter.valueOf(generationText.substring(0, 1).toUpperCase());
     Sound baseSound = voice.getPhonemeOf(firstLetter);
     for (int i = 1; i < generationText.length(); i += 1) {
@@ -33,6 +43,6 @@ public class VoiceGenerator implements Generator {
       baseSound = baseSound.appendSound(nextSound);
     }
 
-    return baseSound.renderSound();
+    return baseSound;
   }
 }
