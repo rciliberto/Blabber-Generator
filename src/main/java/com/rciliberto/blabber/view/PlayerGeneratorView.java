@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 
 /**
@@ -17,52 +18,42 @@ import javax.sound.sampled.LineUnavailableException;
  */
 public class PlayerGeneratorView  implements GeneratorView {
 
-  boolean playCompleted;
+  class AudioListener implements LineListener {
+    private boolean done = false;
+    @Override public synchronized void update(LineEvent event) {
+      LineEvent.Type eventType = event.getType();
+      if (eventType == LineEvent.Type.STOP || eventType == LineEvent.Type.CLOSE) {
+        done = true;
+        notifyAll();
+      }
+    }
+    public synchronized void waitUntilDone() throws InterruptedException {
+      while (!done) {
+        wait();
+      }
+    }
+  }
 
   @Override
   public void renderSound(Sound sound) {
     try {
       AudioInputStream audioStream = sound.renderSound();
-
       AudioFormat format = audioStream.getFormat();
-
       DataLine.Info info = new DataLine.Info(Clip.class, format);
-
       Clip audioClip = (Clip) AudioSystem.getLine(info);
 
-      audioClip.addLineListener(lineEvent -> {
-        LineEvent.Type type = lineEvent.getType();
+      AudioListener listener = new AudioListener();
+      audioClip.addLineListener(listener);
 
-        if (type == LineEvent.Type.START) {
-          System.out.println("Playback started.");
 
-        } else if (type == LineEvent.Type.STOP) {
-          playCompleted = true;
-          System.out.println("Playback completed.");
-        }
-      });
-
+      audioClip.addLineListener(listener);
       audioClip.open(audioStream);
 
       audioClip.start();
-
-      while (!playCompleted) {
-        // wait for the playback completes
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-          ex.printStackTrace();
-        }
-      }
-
+      listener.waitUntilDone();
       audioClip.close();
-
-    } catch (LineUnavailableException ex) {
-      System.out.println("Audio line for playing back is unavailable.");
-      ex.printStackTrace();
-    } catch (IOException ex) {
-      System.out.println("Error playing the audio file.");
-      ex.printStackTrace();
+    } catch (IOException | LineUnavailableException | InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }
