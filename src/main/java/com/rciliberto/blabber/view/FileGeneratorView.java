@@ -13,20 +13,32 @@ import javax.sound.sampled.AudioSystem;
  * file.
  */
 public class FileGeneratorView implements GeneratorView {
-  private final String filePath;
+  private String filePath;
 
   public FileGeneratorView(String filePath) {
     this.filePath = filePath;
   }
 
-  @Override
-  public void renderSound(Sound sound) {
+  /**
+   * Render the {@link Sound} and save it to a file. Sets the file path for this
+   * {@link FileGeneratorView} for future calls of {@link FileGeneratorView#renderSound(Sound)}
+   * @param sound The {@link Sound} to render.
+   * @param filePath The path to the file to save.
+   */
+  public void renderSound(Sound sound, String filePath) {
+    this.filePath = filePath;
+
     try {
       AudioSystem.write(sound.renderSound(),
               AudioFileFormat.Type.WAVE,
               new File(filePath));
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new IllegalStateException("Unable to render sound");
     }
+  }
+
+  @Override
+  public void renderSound(Sound sound) {
+    renderSound(sound, this.filePath);
   }
 }
