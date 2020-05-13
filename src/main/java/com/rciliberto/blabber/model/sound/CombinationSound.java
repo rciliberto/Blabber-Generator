@@ -7,7 +7,7 @@ import javax.sound.sampled.AudioInputStream;
  * more sounds.
  */
 public class CombinationSound extends AbstractSound {
-  private AudioInputStream combinedSounds;
+  private final AudioInputStream combinedSounds;
 
   /**
    * Construct a {@link CombinationSound} from the {@link AudioInputStream} that represents it.

@@ -8,7 +8,7 @@ public enum Letter {
   M("M"), N("N"), O("O"), P("P"), Q("Q"), R("R"), S("S"), T("T"), U("U"), V("V"), W("W"), X("X"),
   Y("Y"), Z("Z");
 
-  String letter;
+  private final String letter;
 
   /**
    * Construct a {@link Letter} with the {@link String} representation of it.

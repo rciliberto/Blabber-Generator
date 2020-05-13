@@ -10,8 +10,8 @@ import com.rciliberto.blabber.view.GeneratorView;
  */
 public class FeaturesGeneratorController implements GeneratorController, Features {
 
-  Generator model;
-  GeneratorView view;
+  private final Generator model;
+  private final GeneratorView view;
 
   /**
    * Constructs a {@link FeaturesGeneratorController} with a given {@link Generator} model and

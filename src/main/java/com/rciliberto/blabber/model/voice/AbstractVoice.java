@@ -11,7 +11,7 @@ import com.rciliberto.blabber.model.sound.Sound;
  * An abstract representation of a {@link Voice} based on the voice of a person.
  */
 public abstract class AbstractVoice implements Voice {
-  Map<Letter, Phoneme> phonemes;
+  private final Map<Letter, Phoneme> phonemes;
 
   /**
    * Construct this {@link AbstractVoice} based on a {@link Map} of {@link Letter}s to sound files.
