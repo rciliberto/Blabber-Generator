@@ -7,16 +7,16 @@ import com.rciliberto.blabber.model.sound.Sound;
 import com.rciliberto.blabber.model.voice.Voice;
 
 /**
- * A {@link GeneratorModel} that generates sounds based on a specific {@link Voice}.
+ * A {@link Generator} that generates sounds based on a specific {@link Voice}.
  */
-public class VoiceGeneratorModel implements GeneratorModel {
+public class VoiceGenerator implements Generator {
   private final Voice voice;
 
   /**
-   * Construct this {@link VoiceGeneratorModel} based on a specific {@link Voice}.
+   * Construct this {@link VoiceGenerator} based on a specific {@link Voice}.
    * @param voice The {@link Voice} used to construct generated sounds.
    */
-  public VoiceGeneratorModel(Voice voice) {
+  public VoiceGenerator(Voice voice) {
     this.voice = voice;
   }
 

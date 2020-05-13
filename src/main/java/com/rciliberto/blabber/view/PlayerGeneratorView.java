@@ -16,9 +16,10 @@ import javax.sound.sampled.LineUnavailableException;
 /**
  * A {@link PlayerGeneratorView} represents a view that can play a {@link Sound}.
  */
-public class PlayerGeneratorView  implements GeneratorView {
+public class PlayerGeneratorView implements GeneratorView {
+  private Sound soundToRender;
 
-  class AudioListener implements LineListener {
+  static class AudioListener implements LineListener {
     private boolean done = false;
     @Override public synchronized void update(LineEvent event) {
       LineEvent.Type eventType = event.getType();
@@ -34,10 +35,19 @@ public class PlayerGeneratorView  implements GeneratorView {
     }
   }
 
+  public PlayerGeneratorView(Sound soundToRender) {
+    this.soundToRender = soundToRender;
+  }
+
   @Override
-  public void renderSound(Sound sound) {
+  public void setSound(Sound sound) {
+    this.soundToRender = sound;
+  }
+
+  @Override
+  public void render() {
     try {
-      AudioInputStream audioStream = sound.renderSound();
+      AudioInputStream audioStream = this.soundToRender.renderSound();
       AudioFormat format = audioStream.getFormat();
       DataLine.Info info = new DataLine.Info(Clip.class, format);
       Clip audioClip = (Clip) AudioSystem.getLine(info);
@@ -55,5 +65,10 @@ public class PlayerGeneratorView  implements GeneratorView {
     } catch (IOException | LineUnavailableException | InterruptedException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void addFeatures(Features features) {
+    throw new UnsupportedOperationException("Features are not supported by FileGeneratorViews");
   }
 }

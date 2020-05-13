@@ -13,21 +13,21 @@ import javax.sound.sampled.AudioSystem;
  * file.
  */
 public class FileGeneratorView implements GeneratorView {
+  private Sound soundToRender;
   private String filePath;
 
-  public FileGeneratorView(String filePath) {
+  public FileGeneratorView(Sound soundToRender, String filePath) {
+    this.soundToRender = soundToRender;
     this.filePath = filePath;
   }
 
   /**
    * Render the {@link Sound} and save it to a file. Sets the file path for this
-   * {@link FileGeneratorView} for future calls of {@link FileGeneratorView#renderSound(Sound)}
+   * {@link FileGeneratorView} for future calls of {@link FileGeneratorView#setSound(Sound)}
    * @param sound The {@link Sound} to render.
    * @param filePath The path to the file to save.
    */
   public void renderSound(Sound sound, String filePath) {
-    this.filePath = filePath;
-
     try {
       AudioSystem.write(sound.renderSound(),
               AudioFileFormat.Type.WAVE,
@@ -37,8 +37,22 @@ public class FileGeneratorView implements GeneratorView {
     }
   }
 
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
   @Override
-  public void renderSound(Sound sound) {
-    renderSound(sound, this.filePath);
+  public void setSound(Sound soundToRender) {
+    this.soundToRender = soundToRender;
+  }
+
+  @Override
+  public void render() {
+    renderSound(this.soundToRender, this.filePath);
+  }
+
+  @Override
+  public void addFeatures(Features features) {
+    throw new UnsupportedOperationException("Features are not supported by FileGeneratorViews");
   }
 }
