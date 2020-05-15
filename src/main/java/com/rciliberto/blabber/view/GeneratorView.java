@@ -16,5 +16,7 @@ public interface GeneratorView {
 
   void render();
 
+  void updateRender();
+
   void addFeatures(Features features) throws UnsupportedOperationException;
 }

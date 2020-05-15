@@ -37,6 +37,6 @@ public class FeaturesGeneratorController implements GeneratorController, Feature
   @Override
   public void renderPhrase(String phrase) {
     view.setSound(model.generate(phrase));
-    view.render();
+    view.updateRender();
   }
 }

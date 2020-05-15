@@ -9,12 +9,16 @@ import com.rciliberto.blabber.view.GeneratorView;
 import com.rciliberto.blabber.view.PlayerGeneratorView;
 
 public class Blabber {
+    static Generator model;
+    static GeneratorView view;
+    static GeneratorController controller;
+
     public static void main(String[] args) {
         model = new VoiceGenerator(Voices.ROB_VOICE);
         view = new PlayerGeneratorView(model.generate("Hello World!"));
         controller = new FeaturesGeneratorController(model, view);
 
-        GeneratorController generatorController = new FeaturesGeneratorController(robVoiceGenerator, generatorView);
-        generatorController.start();
+        controller.start();
     }
+
 }

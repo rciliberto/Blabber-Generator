@@ -35,6 +35,10 @@ public class PlayerGeneratorView implements GeneratorView {
     }
   }
 
+  public PlayerGeneratorView() {
+    super();
+  }
+
   public PlayerGeneratorView(Sound soundToRender) {
     this.soundToRender = soundToRender;
   }
@@ -46,6 +50,11 @@ public class PlayerGeneratorView implements GeneratorView {
 
   @Override
   public void render() {
+    updateRender();
+  }
+
+  @Override
+  public void updateRender() {
     try {
       AudioInputStream audioStream = this.soundToRender.renderSound();
       AudioFormat format = audioStream.getFormat();
@@ -62,8 +71,9 @@ public class PlayerGeneratorView implements GeneratorView {
       audioClip.start();
       listener.waitUntilDone();
       audioClip.close();
-    } catch (IOException | LineUnavailableException | InterruptedException e) {
+    } catch (IOException | LineUnavailableException | InterruptedException | NullPointerException e) {
       e.printStackTrace();
+      throw new IllegalStateException("Unable to render sound");
     }
   }
 

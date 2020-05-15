@@ -16,6 +16,10 @@ public class FileGeneratorView implements GeneratorView {
   private Sound soundToRender;
   private String filePath;
 
+  public FileGeneratorView() {
+    super();
+  }
+
   public FileGeneratorView(Sound soundToRender, String filePath) {
     this.soundToRender = soundToRender;
     this.filePath = filePath;
@@ -32,7 +36,8 @@ public class FileGeneratorView implements GeneratorView {
       AudioSystem.write(sound.renderSound(),
               AudioFileFormat.Type.WAVE,
               new File(filePath));
-    } catch (IOException e) {
+    } catch (IOException | NullPointerException e) {
+      e.printStackTrace();
       throw new IllegalStateException("Unable to render sound");
     }
   }
@@ -48,6 +53,11 @@ public class FileGeneratorView implements GeneratorView {
 
   @Override
   public void render() {
+    updateRender();
+  }
+
+  @Override
+  public void updateRender() {
     renderSound(this.soundToRender, this.filePath);
   }
 

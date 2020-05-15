@@ -5,19 +5,20 @@ import java.util.Objects;
 import com.rciliberto.blabber.model.letter.Letter;
 import com.rciliberto.blabber.model.sound.Sound;
 import com.rciliberto.blabber.model.voice.Voice;
+import com.rciliberto.blabber.model.voice.Voices;
 
 /**
  * A {@link Generator} that generates sounds based on a specific {@link Voice}.
  */
 public class VoiceGenerator implements Generator {
-  private final Voice voice;
+  private Voice voice;
 
   /**
    * Construct this {@link VoiceGenerator} based on a specific {@link Voice}.
-   * @param voice The {@link Voice} used to construct generated sounds.
+   * @param voice The specific {@link Voice} from {@link Voices} used to construct generated sounds.
    */
-  public VoiceGenerator(Voice voice) {
-    this.voice = voice;
+  public VoiceGenerator(Voices voice) {
+    this.voice = voice.getVoice();
   }
 
   @Override
@@ -42,5 +43,10 @@ public class VoiceGenerator implements Generator {
     }
 
     return baseSound;
+  }
+
+  @Override
+  public void setVoice(Voices voice) {
+    this.voice = voice.getVoice();
   }
 }
