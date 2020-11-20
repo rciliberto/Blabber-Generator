@@ -14,6 +14,7 @@ public interface Generator {
    * Transform the given {@link String} text into a spoken {@link Sound}.
    * @param text The text to turn into a {@link Sound}
    * @return The {@link Sound} that is generated
+   * @throws IllegalArgumentException if the string is Null or empty.
    */
   Sound generate(String text);
 

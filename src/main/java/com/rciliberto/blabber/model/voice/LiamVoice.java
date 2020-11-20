@@ -1,7 +1,7 @@
 package com.rciliberto.blabber.model.voice;
 
 /**
- * {@link LiamVoice} represents the {@link AbstractVoice} "Rob"
+ * {@link LiamVoice} represents the {@link AbstractVoice} "Liam"
  */
 public class LiamVoice extends AbstractVoice {
 
