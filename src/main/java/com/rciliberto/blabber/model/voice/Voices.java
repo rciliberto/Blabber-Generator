@@ -6,7 +6,9 @@ public enum Voices {
   LIAM_VOICE(new LiamVoice(), "Liam"),
   ROB_VOICE(new RobVoice(), "Rob"),
   BOB_VOICE(new BobVoice(), "Bob"),
-  SOPHIE_VOICE(new SophieVoice(), "Sophie");
+  SOPHIE_C_VOICE(new SophieCVoice(), "SophieC"),
+  SOPHIE_O_VOICE(new SophieOVoice(), "SophieO"),
+  GEORGE_VOICE(new GeorgeVoice(), "George");
 
   private final Voice voice;
   private final String representation;

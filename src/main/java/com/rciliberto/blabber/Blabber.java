@@ -7,7 +7,6 @@ import com.rciliberto.blabber.model.VoiceGenerator;
 import com.rciliberto.blabber.model.voice.Voices;
 import com.rciliberto.blabber.view.FileGeneratorView;
 import com.rciliberto.blabber.view.GeneratorView;
-import com.rciliberto.blabber.view.gui.GuiGeneratorView;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +17,9 @@ public class Blabber {
   static GeneratorController controller;
 
   public static void main(String[] args) {
-    Voices voice = Voices.HAZEL_VOICE;
-    String location = "Location 1";
-    String line = "that's true";
+    Voices voice = Voices.GEORGE_VOICE;
+    String location = "SophNov";
+    String line = "the quick brown fox jumps over the lazy dog";
     String path = "./dialogue/" + location + "/" + voice.toString() + "/" + line + ".wav";
     File f = new File(path);
 

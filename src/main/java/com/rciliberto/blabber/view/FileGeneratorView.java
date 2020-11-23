@@ -42,6 +42,10 @@ public class FileGeneratorView implements GeneratorView {
     }
   }
 
+  /**
+   * Update the file path to a different path.
+   * @param filePath the path the update to
+   */
   public void setFilePath(String filePath) {
     this.filePath = filePath;
   }

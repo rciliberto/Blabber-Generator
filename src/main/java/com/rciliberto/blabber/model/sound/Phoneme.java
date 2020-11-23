@@ -37,7 +37,7 @@ public class Phoneme extends AbstractSound {
     try {
       return AudioSystem.getAudioInputStream(new File(phonemeFile));
     } catch (UnsupportedAudioFileException | IOException e) {
-      throw new IllegalStateException("Failed to render sound.");
+      throw new IllegalStateException("Failed to render sound. " + e.getLocalizedMessage());
     }
   }
 

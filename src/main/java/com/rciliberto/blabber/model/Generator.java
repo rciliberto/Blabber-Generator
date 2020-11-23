@@ -3,7 +3,6 @@ package com.rciliberto.blabber.model;
 import javax.sound.sampled.AudioInputStream;
 
 import com.rciliberto.blabber.model.sound.Sound;
-import com.rciliberto.blabber.model.voice.Voice;
 import com.rciliberto.blabber.model.voice.Voices;
 
 /**
